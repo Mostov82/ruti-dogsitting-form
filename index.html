@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טופס קליטה – אירוח וליווי כלבים של רותי 🐾</title>
+  <meta name="description" content="טופס פרטים לאירוח כלב אצל רותי – עוזר לנו לתת את הטיפול הטוב והבטוח ביותר." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== עורכים כאן בקלות: צבעים ראשיים ===== */
+    :root {
+      --brand: #e07a5f;        /* כתום-אפרסק חמים */
+      --brand-dark: #c75f45;
+      --accent: #3d7a6f;       /* טורקיז */
+      --bg: #faf6f1;
+      --card: #ffffff;
+      --text: #2d2a26;
+      --muted: #6f6a63;
+      --line: #e7e0d7;
+      --radius: 14px;
+      --shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Heebo', 'Assistant', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    header.hero {
+      text-align: center;
+      padding: 32px 20px 26px;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    header.hero h1 { margin: 0 0 6px; font-size: 1.7rem; font-weight: 700; }
+    header.hero p { margin: 0; opacity: .95; font-size: 1.02rem; }
+    .paw { font-size: 2rem; display:block; margin-bottom: 4px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 20px 8px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--line);
+      color: var(--brand-dark);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card h2 .ico { font-size: 1.25rem; }
+    .intro-note {
+      background: #fff4ef;
+      border: 1px solid #f3d6ca;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      color: #7a4a3a;
+      font-size: .97rem;
+    }
+
+    .field { margin-bottom: 15px; }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .row .field { flex: 1 1 200px; }
+    label { display: block; font-weight: 500; margin-bottom: 5px; font-size: .95rem; }
+    label .req { color: var(--brand); font-weight: 700; }
+    .hint { font-weight: 400; color: var(--muted); font-size: .85rem; }
+
+    input[type=text], input[type=tel], input[type=email], input[type=number],
+    input[type=date], textarea, select {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text);
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(224,122,95,.15);
+    }
+    textarea { resize: vertical; min-height: 70px; }
+    input[type=file] { width:100%; font-family: inherit; font-size:.92rem; padding:8px 0; }
+
+    /* טבלאות מובנות */
+    table.grid { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+    table.grid th, table.grid td { padding: 7px 6px; vertical-align: top; }
+    table.grid th {
+      text-align: right; font-size: .82rem; color: var(--muted);
+      font-weight: 600; border-bottom: 1px solid var(--line);
+    }
+    table.grid td input { padding: 9px 10px; }
+    .rowlabel { font-weight: 600; white-space: nowrap; color: var(--accent); padding-top: 18px; }
+
+    .addrow {
+      background: none; border: 1px dashed var(--accent); color: var(--accent);
+      padding: 8px 14px; border-radius: 10px; cursor: pointer; font-family: inherit;
+      font-size: .9rem; font-weight: 500; margin: 4px 0 14px;
+    }
+    .addrow:hover { background: #eef5f3; }
+
+    .consent {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: #f3f8f6; border: 1px solid #d7e8e3; border-radius: 12px; padding: 14px 16px;
+    }
+    .consent input[type=checkbox] { width: 20px; height: 20px; margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+    .consent label { margin: 0; font-weight: 400; }
+
+    .amount-inline { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .amount-inline input[type=number] { max-width: 150px; }
+    .amount-inline .shekel { font-weight:600; }
+
+    button.submit {
+      width: 100%;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow);
+      transition: background .15s, transform .05s;
+      margin-top: 6px;
+    }
+    button.submit:hover { background: var(--brand-dark); }
+    button.submit:active { transform: translateY(1px); }
+
+    footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 26px; }
+    .hp { position: absolute; left: -9999px; top: -9999px; }
+
+    @media (max-width: 520px) {
+      header.hero h1 { font-size: 1.4rem; }
+      .card { padding: 16px 14px 4px; }
+      .rowlabel { padding-top: 0; }
+      table.grid, table.grid tbody, table.grid tr, table.grid td { display:block; width:100%; }
+      table.grid thead { display:none; }
+      table.grid td { padding: 4px 0; }
+      .rowlabel { margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="paw">🐾</span>
+      <h1>טופס קליטה – אירוח וליווי כלבים אצל רותי</h1>
+      <p>נעים להכיר! הפרטים כאן עוזרים לנו לתת לכלב שלכם את הטיפול הכי טוב ובטוח.</p>
+    </header>
+
+    <div class="intro-note">
+      מילוי הטופס לוקח כ-5 דקות. שדות המסומנים ב-<span style="color:var(--brand);font-weight:700">*</span> הם חובה, השאר לפי מה שרלוונטי לכם. בסיום לחצו על הכפתור למטה והפרטים יישלחו ישירות לרותי.
+    </div>
+
+    <!-- action = כתובת FormSubmit עם המייל של רותי. לשינוי כתובת היעד – מחליפים את המייל כאן. -->
+    <form action="https://formsubmit.co/rutistow@gmail.com" method="POST" enctype="multipart/form-data">
+
+      <!-- ===== הגדרות FormSubmit (שדות מוסתרים) ===== -->
+      <input type="hidden" name="_subject" value="🐾 טופס פרטים חדש לאירוח כלב" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://mostov82.github.io/ruti-dogsitting-form/thankyou.html" />
+      <!-- מלכודת ספאם – לא נראית למשתמש -->
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" />
+
+      <!-- ===== פרטי הבעלים ואנשי קשר ===== -->
+      <section class="card">
+        <h2><span class="ico">👤</span> פרטי הבעלים ואנשי קשר</h2>
+        <div class="row">
+          <div class="field">
+            <label>שם מלא של הבעלים <span class="req">*</span></label>
+            <input type="text" name="שם הבעלים" required />
+          </div>
+          <div class="field">
+            <label>טלפון <span class="req">*</span></label>
+            <input type="tel" name="טלפון הבעלים" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>אימייל</label>
+            <input type="email" name="אימייל הבעלים" />
+          </div>
+          <div class="field">
+            <label>כתובת מגורים</label>
+            <input type="text" name="כתובת" />
+          </div>
+        </div>
+        <div class="field">
+          <label>איפה תהיו בזמן האירוח ובאילו תאריכים? <span class="hint">(יעד/טיסה ותאריכי יציאה-חזרה)</span></label>
+          <input type="text" name="יעד ותאריכים" />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>איש קשר נוסף לשעת חירום <span class="hint">(שם)</span></label>
+            <input type="text" name="איש קשר חירום - שם" />
+          </div>
+          <div class="field">
+            <label>טלפון איש הקשר לחירום</label>
+            <input type="tel" name="איש קשר חירום - טלפון" />
+          </div>
+        </div>
+        <div class="field">
+          <label>מי מורשה לאסוף את הכלב מלבדכם?</label>
+          <input type="text" name="מורשים לאיסוף הכלב" />
+        </div>
+      </section>
+
+      <!-- ===== פרטי הכלב ===== -->
+      <section class="card">
+        <h2><span class="ico">🐕</span> הכלב שלי</h2>
+        <div class="row">
+          <div class="field">
+            <label>שם הכלב <span class="req">*</span></label>
+            <input type="text" name="שם הכלב" required />
+          </div>
+          <div class="field">
+            <label>גזע</label>
+            <input type="text" name="גזע" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>גיל</label>
+            <input type="text" name="גיל" />
+          </div>
+          <div class="field">
+            <label>משקל (ק״ג)</label>
+            <input type="text" name="משקל" />
+          </div>
+          <div class="field">
+            <label>מין</label>
+            <select name="מין">
+              <option value="">בחרו…</option>
+              <option>זכר</option>
+              <option>נקבה</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>מעוקר / מעוקרת?</label>
+            <select name="עיקור">
+              <option value="">בחרו…</option>
+              <option>כן</option>
+              <option>לא</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>חיסונים בתוקף עד</label>
+            <input type="date" name="חיסונים בתוקף עד" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>מספר שבב</label>
+            <input type="text" name="מספר שבב" />
+          </div>
+          <div class="field">
+            <label>חברת רישום השבב</label>
+            <input type="text" name="חברת רישום השבב" />
+          </div>
+        </div>
+        <div class="field">
+          <label>אלרגיות <span class="hint">(מזון, תרופות, אחר)</span></label>
+          <input type="text" name="אלרגיות" />
+        </div>
+        <div class="field">
+          <label>מצבים רפואיים / רגישויות שחשוב שנדע</label>
+          <textarea name="מצבים רפואיים"></textarea>
+        </div>
+        <div class="field">
+          <label>תמונת הכלב <span class="hint">(לא חובה – עוזר לנו לזהות ולהתאהב 🙂)</span></label>
+          <input type="file" name="תמונת הכלב" accept="image/*" />
+        </div>
+      </section>
+
+      <!-- ===== וטרינר וחירום ===== -->
+      <section class="card">
+        <h2><span class="ico">🏥</span> וטרינר וחירום רפואי</h2>
+        <div class="row">
+          <div class="field">
+            <label>שם הווטרינר הקבוע</label>
+            <input type="text" name="וטרינר - שם" />
+          </div>
+          <div class="field">
+            <label>טלפון הווטרינר</label>
+            <input type="tel" name="וטרינר - טלפון" />
+          </div>
+        </div>
+        <div class="field">
+          <label>מרפאת חירום 24 שעות <span class="hint">(שם וכתובת)</span></label>
+          <input type="text" name="מרפאת חירום 24 שעות" />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>ביטוח לחיית מחמד <span class="hint">(חברה)</span></label>
+            <input type="text" name="ביטוח - חברה" />
+          </div>
+          <div class="field">
+            <label>מספר פוליסה</label>
+            <input type="text" name="ביטוח - מספר פוליסה" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== תרופות ===== -->
+      <section class="card">
+        <h2><span class="ico">💊</span> תרופות</h2>
+        <p class="hint" style="margin-top:-6px">אם הכלב מקבל תרופות – פרטו אותן כאן. אפשר להוסיף שורות.</p>
+        <table class="grid" id="medsTable">
+          <thead>
+            <tr><th style="width:34%">תרופה</th><th style="width:26%">מתי / תדירות</th><th style="width:40%">מינון והערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="תרופה 1 - שם" /></td>
+              <td><input type="text" name="תרופה 1 - מתי" /></td>
+              <td><input type="text" name="תרופה 1 - מינון" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="addrow" id="addMed">+ הוספת תרופה</button>
+      </section>
+
+      <!-- ===== האכלה ===== -->
+      <section class="card">
+        <h2><span class="ico">🍽️</span> האכלה</h2>
+        <table class="grid">
+          <thead>
+            <tr><th style="width:22%"> </th><th style="width:44%">אוכל וכמות</th><th style="width:34%">הערות</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rowlabel">ארוחת בוקר</td>
+              <td><input type="text" name="בוקר - אוכל וכמות" /></td>
+              <td><input type="text" name="בוקר - הערות" /></td>
+            </tr>
+            <tr>
+              <td class="rowlabel">ארוחת ערב</td>
+              <td><input type="text" name="ערב - אוכל וכמות" /></td>
+              <td><input type="text" name="ערב - הערות" /></td>
+            </tr>
+            <tr>
+              <td class="rowlabel">חטיפים / עצמות</td>
+              <td><input type="text" name="חטיפים - אוכל וכמות" /></td>
+              <td><input type="text" name="חטיפים - הערות" /></td>
+            </tr>
+            <tr>
+              <td class="rowlabel">מים</td>
+              <td><input type="text" name="מים" placeholder="זמין תמיד / מוחלף פעמיים ביום…" /></td>
+              <td><input type="text" name="מים - הערות" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== שגרה יומית ===== -->
+      <section class="card">
+        <h2><span class="ico">⏰</span> שגרה יומית</h2>
+        <p class="hint" style="margin-top:-6px">מה הכלב רגיל אליו בכל חלק של היום – טיולים, שינה, משחק וכו׳.</p>
+        <table class="grid">
+          <thead><tr><th style="width:22%"> </th><th>מה קורה</th></tr></thead>
+          <tbody>
+            <tr><td class="rowlabel">בוקר</td><td><input type="text" name="שגרה - בוקר" /></td></tr>
+            <tr><td class="rowlabel">צהריים</td><td><input type="text" name="שגרה - צהריים" /></td></tr>
+            <tr><td class="rowlabel">ערב</td><td><input type="text" name="שגרה - ערב" /></td></tr>
+            <tr><td class="rowlabel">לפני השינה</td><td><input type="text" name="שגרה - לילה" /></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== התנהגות ונוחות ===== -->
+      <section class="card">
+        <h2><span class="ico">🦴</span> התנהגות ונוחות</h2>
+        <div class="field">
+          <label>פקודות שהכלב מכיר <span class="hint">(שב, חכה, עזוב, בוא…)</span></label>
+          <input type="text" name="פקודות שהכלב מכיר" />
+        </div>
+        <div class="field">
+          <label>פחדים וטריגרים <span class="hint">(רעמים, אופניים, כלבים אחרים…)</span></label>
+          <input type="text" name="פחדים וטריגרים" />
+        </div>
+        <div class="field">
+          <label>משחקים וצעצועים אהובים</label>
+          <input type="text" name="משחקים וצעצועים אהובים" />
+        </div>
+        <div class="field">
+          <label>איך הכלב מביע מתח או אי-נוחות?</label>
+          <input type="text" name="סימני מתח" />
+        </div>
+        <div class="field">
+          <label>הרגלי רצועה ודלת <span class="hint">(מושך? בורח בפתיחת דלת?)</span></label>
+          <input type="text" name="הרגלי רצועה ודלת" />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>מסתדר עם כלבים אחרים?</label>
+            <select name="מסתדר עם כלבים אחרים">
+              <option value="">בחרו…</option>
+              <option>כן</option>
+              <option>לא</option>
+              <option>תלוי / בזהירות</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>מסתדר עם ילדים?</label>
+            <select name="מסתדר עם ילדים">
+              <option value="">בחרו…</option>
+              <option>כן</option>
+              <option>לא</option>
+              <option>תלוי / בזהירות</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== אישור טיפול וטרינרי ===== -->
+      <section class="card">
+        <h2><span class="ico">✅</span> אישור טיפול וטרינרי</h2>
+        <div class="field">
+          <label>במקרה חירום – אני מאשר/ת לפנות לטיפול וטרינרי עד לסכום של:</label>
+          <div class="amount-inline">
+            <input type="number" name="אישור טיפול עד סכום" min="0" step="50" placeholder="למשל 1500" />
+            <span class="shekel">₪</span>
+          </div>
+        </div>
+        <div class="consent">
+          <input type="checkbox" id="consent" name="אישור הבעלים" value="מאשר/ת: הפרטים נכונים, ואני מאשר/ת לרותי לפנות לטיפול וטרינרי בשעת חירום עד הסכום שצוין" required />
+          <label for="consent">
+            אני מאשר/ת שכל הפרטים נכונים, ומסכים/ה שרותי תפנה לטיפול וטרינרי בשעת חירום עד הסכום שציינתי אם לא ניתן יהיה להשיג אותי. <span class="req">*</span>
+          </label>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <div class="field">
+            <label>שם הממלא/ת (כחתימה) <span class="req">*</span></label>
+            <input type="text" name="חתימה - שם" required />
+          </div>
+          <div class="field">
+            <label>תאריך מילוי</label>
+            <input type="date" name="תאריך מילוי" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== נוסף ===== -->
+      <section class="card">
+        <h2><span class="ico">📝</span> משהו נוסף?</h2>
+        <div class="field">
+          <label>כל דבר נוסף שחשוב שנדע על הכלב שלכם</label>
+          <textarea name="הערות נוספות" rows="4"></textarea>
+        </div>
+      </section>
+
+      <button type="submit" class="submit">שליחת הטופס לרותי 🐾</button>
+    </form>
+
+    <footer>
+      נשמח לשמור על הכלב שלכם 🐾 · הפרטים נשלחים ישירות ובאופן פרטי לרותי
+    </footer>
+  </div>
+
+  <script>
+    // הוספת שורות תרופה דינמית
+    (function () {
+      var count = 1;
+      var btn = document.getElementById('addMed');
+      var tbody = document.querySelector('#medsTable tbody');
+      btn.addEventListener('click', function () {
+        count++;
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td><input type="text" name="תרופה ' + count + ' - שם" /></td>' +
+          '<td><input type="text" name="תרופה ' + count + ' - מתי" /></td>' +
+          '<td><input type="text" name="תרופה ' + count + ' - מינון" /></td>';
+        tbody.appendChild(tr);
+      });
+    })();
+
+    // ברירת מחדל: תאריך היום בשדה תאריך המילוי
+    (function () {
+      var d = new Date();
+      var iso = d.getFullYear() + '-' +
+        String(d.getMonth() + 1).padStart(2, '0') + '-' +
+        String(d.getDate()).padStart(2, '0');
+      var el = document.querySelector('input[name="תאריך מילוי"]');
+      if (el) el.value = iso;
+    })();
+  </script>
+</body>
+</html>
