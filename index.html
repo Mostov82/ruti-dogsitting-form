@@ -206,9 +206,25 @@
             <input type="text" name="כתובת" />
           </div>
         </div>
-        <div class="field">
-          <label>איפה תהיו בזמן האירוח ובאילו תאריכים? <span class="hint">(יעד/טיסה ותאריכי יציאה-חזרה)</span></label>
-          <input type="text" name="יעד ותאריכים" />
+        <div class="row">
+          <div class="field">
+            <label>איפה תהיו בזמן האירוח? <span class="hint">(יעד/טיסה)</span></label>
+            <input type="text" name="יעד" />
+          </div>
+          <div class="field">
+            <label>באילו תאריכים? <span class="hint">(יציאה–חזרה)</span></label>
+            <input type="text" name="תאריכי האירוח" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>שעת הבאת הכלב</label>
+            <input type="time" name="שעת הבאת הכלב" />
+          </div>
+          <div class="field">
+            <label>שעת החזרת / איסוף הכלב</label>
+            <input type="time" name="שעת החזרת הכלב" />
+          </div>
         </div>
         <div class="row">
           <div class="field">
@@ -259,8 +275,8 @@
         </div>
         <div class="row">
           <div class="field">
-            <label>מעוקר / מעוקרת?</label>
-            <select name="עיקור">
+            <label>מעוקר / מעוקרת? <span class="req">*</span></label>
+            <select name="עיקור" required>
               <option value="">בחרו…</option>
               <option>כן</option>
               <option>לא</option>
@@ -271,15 +287,9 @@
             <input type="date" name="חיסונים בתוקף עד" />
           </div>
         </div>
-        <div class="row">
-          <div class="field">
-            <label>מספר שבב</label>
-            <input type="text" name="מספר שבב" />
-          </div>
-          <div class="field">
-            <label>חברת רישום השבב</label>
-            <input type="text" name="חברת רישום השבב" />
-          </div>
+        <div class="field">
+          <label>מספר שבב</label>
+          <input type="text" name="מספר שבב" />
         </div>
         <div class="field">
           <label>אלרגיות <span class="hint">(מזון, תרופות, אחר)</span></label>
@@ -373,21 +383,19 @@
             </tr>
           </tbody>
         </table>
+        <div class="field" style="margin-top:12px">
+          <label>הערות נוספות על האכלה <span class="hint">(מלל חופשי)</span></label>
+          <textarea name="האכלה - הערות"></textarea>
+        </div>
       </section>
 
       <!-- ===== שגרה יומית ===== -->
       <section class="card">
         <h2><span class="ico">⏰</span> שגרה יומית</h2>
-        <p class="hint" style="margin-top:-6px">מה הכלב רגיל אליו בכל חלק של היום – טיולים, שינה, משחק וכו׳.</p>
-        <table class="grid">
-          <thead><tr><th style="width:22%"> </th><th>מה קורה</th></tr></thead>
-          <tbody>
-            <tr><td class="rowlabel">בוקר</td><td><input type="text" name="שגרה - בוקר" /></td></tr>
-            <tr><td class="rowlabel">צהריים</td><td><input type="text" name="שגרה - צהריים" /></td></tr>
-            <tr><td class="rowlabel">ערב</td><td><input type="text" name="שגרה - ערב" /></td></tr>
-            <tr><td class="rowlabel">לפני השינה</td><td><input type="text" name="שגרה - לילה" /></td></tr>
-          </tbody>
-        </table>
+        <div class="field">
+          <label>מה הכלב רגיל אליו במהלך היום? <span class="hint">(בוקר, צהריים, ערב ולפני השינה – טיולים, שינה, משחק וכו׳)</span></label>
+          <textarea name="שגרה יומית" rows="4"></textarea>
+        </div>
       </section>
 
       <!-- ===== התנהגות ונוחות ===== -->
