@@ -322,16 +322,6 @@
           <label>מרפאת חירום 24 שעות <span class="hint">(שם וכתובת)</span></label>
           <input type="text" name="מרפאת חירום 24 שעות" />
         </div>
-        <div class="row">
-          <div class="field">
-            <label>ביטוח לחיית מחמד <span class="hint">(חברה)</span></label>
-            <input type="text" name="ביטוח - חברה" />
-          </div>
-          <div class="field">
-            <label>מספר פוליסה</label>
-            <input type="text" name="ביטוח - מספר פוליסה" />
-          </div>
-        </div>
       </section>
 
       <!-- ===== תרופות ===== -->
@@ -356,35 +346,34 @@
       <!-- ===== האכלה ===== -->
       <section class="card">
         <h2><span class="ico">🍽️</span> האכלה</h2>
-        <table class="grid">
-          <thead>
-            <tr><th style="width:22%"> </th><th style="width:44%">אוכל וכמות</th><th style="width:34%">הערות</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="rowlabel">ארוחת בוקר</td>
-              <td><input type="text" name="בוקר - אוכל וכמות" /></td>
-              <td><input type="text" name="בוקר - הערות" /></td>
-            </tr>
-            <tr>
-              <td class="rowlabel">ארוחת ערב</td>
-              <td><input type="text" name="ערב - אוכל וכמות" /></td>
-              <td><input type="text" name="ערב - הערות" /></td>
-            </tr>
-            <tr>
-              <td class="rowlabel">חטיפים / עצמות</td>
-              <td><input type="text" name="חטיפים - אוכל וכמות" /></td>
-              <td><input type="text" name="חטיפים - הערות" /></td>
-            </tr>
-            <tr>
-              <td class="rowlabel">מים</td>
-              <td><input type="text" name="מים" placeholder="זמין תמיד / מוחלף פעמיים ביום…" /></td>
-              <td><input type="text" name="מים - הערות" /></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="field" style="margin-top:12px">
-          <label>הערות נוספות על האכלה <span class="hint">(מלל חופשי)</span></label>
+        <div class="field">
+          <label>סוג המזון <span class="hint">(מותג וסוג)</span></label>
+          <input type="text" name="סוג המזון" />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>כמות ליום / מספר ארוחות</label>
+            <input type="text" name="כמות ליום / מספר ארוחות" />
+          </div>
+          <div class="field">
+            <label>שעות האכלה</label>
+            <input type="text" name="שעות האכלה" />
+          </div>
+        </div>
+        <div class="field">
+          <label>חטיפים – מותרים / אסורים</label>
+          <input type="text" name="חטיפים מותרים/אסורים" />
+        </div>
+        <div class="field">
+          <label>רגישות למזון?</label>
+          <select name="רגישות למזון">
+            <option value="">בחרו…</option>
+            <option>כן</option>
+            <option>לא</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>הערות נוספות <span class="hint">(כאן המקום לשתף מה קורה כשנאכל משהו אסור ;))</span></label>
           <textarea name="האכלה - הערות"></textarea>
         </div>
       </section>
@@ -392,8 +381,18 @@
       <!-- ===== שגרה יומית ===== -->
       <section class="card">
         <h2><span class="ico">⏰</span> שגרה יומית</h2>
+        <div class="row">
+          <div class="field">
+            <label>מספר טיולים ביום / משך</label>
+            <input type="text" name="מספר טיולים ביום / משך" />
+          </div>
+          <div class="field">
+            <label>שעות מועדפות</label>
+            <input type="text" name="שעות מועדפות לטיולים" />
+          </div>
+        </div>
         <div class="field">
-          <label>מה הכלב רגיל אליו במהלך היום? <span class="hint">(בוקר, צהריים, ערב ולפני השינה – טיולים, שינה, משחק וכו׳)</span></label>
+          <label>מה הכלב רגיל אליו במהלך היום? <span class="hint">(בוקר, צהריים, ערב ולפני השינה – שינה, משחק וכו׳)</span></label>
           <textarea name="שגרה יומית" rows="4"></textarea>
         </div>
       </section>
